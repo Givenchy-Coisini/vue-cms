@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path')
+// const path = require('path')
 module.exports = {
   // 1.配置方式一：cli提供的属性
   outputDir: './build',
