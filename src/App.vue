@@ -1,7 +1,7 @@
 <template>
   <img src="./assets/logo.png" />
   <div>
-    <el-button type="primary">el-button</el-button>
+    <el-button type="primary">哈哈哈</el-button>
   </div>
 </template>
 

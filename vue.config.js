@@ -3,6 +3,7 @@
 module.exports = {
   // 1.配置方式一：cli提供的属性
   outputDir: './build',
+  transpileDependencies: ['element-plus'],
   // 2.配置方式二：和webpack属性完全一致
   configureWebpack: {
     resolve: {
