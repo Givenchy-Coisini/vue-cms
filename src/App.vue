@@ -2,6 +2,7 @@
   <img src="./assets/logo.png" />
   <div>
     <el-button type="primary">哈哈哈</el-button>
+    <el-button type="danger">哈哈哈</el-button>
   </div>
 </template>
 

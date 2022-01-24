@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import './network/axios_demo'
 import router from './router'
 import store from './store'
 
