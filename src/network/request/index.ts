@@ -52,11 +52,12 @@ class YJRequest {
           this.loading?.close()
         }, 1000)
         const data = res.data
-        if (data.retrunCode === '-1001') {
-          console.log('请求失败~,错误信息')
-        } else {
-          return data
-        }
+        return data
+        // if (data.retrunCode === '-1001') {
+        //   console.log('请求失败~,错误信息')
+        // } else {
+        //   return data
+        // }
       },
       (err) => {
         console.log('所有的实例都有的拦截器:响应失败拦截')
@@ -90,7 +91,7 @@ class YJRequest {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res)
+          // console.log(res)
           // 将showLoading设置为true 这样不会影响下次请求
           this.showLoading = DEAFULT_LOADING
           // 3.将结果resolve返回出去

@@ -11,7 +11,7 @@ export const rules = {
       trigger: 'blur'
     }
   ],
-  password: [
+  passwd: [
     {
       required: true,
       message: '密码是必传内容',

@@ -5,16 +5,17 @@ import ElementPlus from 'element-plus'
 import './assets/css/index.less'
 import 'element-plus/dist/index.css'
 // import './network/axios_demo'
-import yjRequest from './network'
+// import yjRequest from './network'
 import router from './router'
 import store from './store'
+import { setupStore } from './store'
 
 const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(ElementPlus)
 app.mount('#app')
-
+setupStore()
 // yjRequest.request({
 //   url: '/home/multidata',
 //   method: 'GET',
@@ -29,8 +30,8 @@ app.mount('#app')
 //     }
 //   }
 // })
-yjRequest.request({
-  url: '/home/multidata',
-  method: 'GET',
-  showLoading: false
-})
+// yjRequest.request({
+//   url: '/home/multidata',
+//   method: 'GET',
+//   showLoading: false
+// })

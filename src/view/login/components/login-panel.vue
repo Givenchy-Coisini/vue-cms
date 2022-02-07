@@ -1,9 +1,9 @@
 <template>
   <div class="login-panel">
     <h2 class="title">低氮冷凝高效燃气锅炉智慧云平台</h2>
-    <el-tabs type="border-card" class="demo-tabs" stretch>
+    <el-tabs type="border-card" class="demo-tabs" v-model="currentTab" stretch>
       <!-- icon用着有bug -->
-      <el-tab-pane>
+      <el-tab-pane name="account">
         <template #label>
           <span>
             <el-icon><calendar /></el-icon>账号登录
@@ -11,13 +11,13 @@
         </template>
         <login-account ref="accountRef"></login-account>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span>
             <el-icon><calendar /></el-icon>手机登录
           </span>
         </template>
-        <login-phone></login-phone>
+        <login-phone ref="phoneRef"></login-phone>
       </el-tab-pane>
     </el-tabs>
     <div class="account-control">
@@ -43,13 +43,21 @@ export default defineComponent({
   setup() {
     const isKeepPassword = ref(true)
     const accountRef = ref<InstanceType<typeof loginAccount>>()
+    const phoneRef = ref<InstanceType<typeof loginPhone>>()
+    const currentTab = ref<string>('account')
     const handleLoginClick = () => {
-      accountRef.value?.loginAction()
+      if (currentTab.value === 'account') {
+        accountRef.value?.loginAction(isKeepPassword.value)
+      } else {
+        console.log('手机登录 phoneRef调用loginAction')
+      }
     }
     return {
       isKeepPassword,
       handleLoginClick,
-      accountRef
+      accountRef,
+      phoneRef,
+      currentTab
     }
   }
 })

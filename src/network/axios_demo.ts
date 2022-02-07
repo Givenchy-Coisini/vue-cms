@@ -1,9 +1,9 @@
 import axios from 'axios'
 // axios的实例对象
-axios.get('http://123.207.32.32:8000/home/multidata').then((res) => {
-  console.log(res)
-  console.log(process.env.NODE_ENV)
-})
+// axios.get('http://123.207.32.32:8000/home/multidata').then((res) => {
+//   console.log(res)
+//   console.log(process.env.NODE_ENV)
+// })
 // promise 本身是可以有类型的
 
 // axios的拦截器
