@@ -5,7 +5,7 @@
 ## 界面和功能展示
 ### 登录
 
-![](./src/assets/images/pics/login.jpg)
+![](https://s3.bmp.ovh/imgs/2022/02/9bf05e0340b0adfc.jpg)
 
 
 ## 感谢
