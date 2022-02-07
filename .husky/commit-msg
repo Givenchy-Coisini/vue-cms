@@ -1,0 +1,5 @@
+#!/bin/sh
+."$(dirname "$0")/_/husky.sh"
+
+#lint 相关检查
+npx --no-install commitlint --edit
