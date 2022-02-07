@@ -72,7 +72,7 @@ class YJRequest {
       }
     )
   }
-  request<T>(config: YJRequestConfig): Promise<T> {
+  request<T>(config: YJRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 1.单个请求对请求config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -88,7 +88,7 @@ class YJRequest {
         .then((res) => {
           // 1.单个请求对数据的处理
           if (config.interceptors?.responseInterceptor) {
-            // res = config.interceptors.responseInterceptor(res)
+            res = config.interceptors.responseInterceptor(res)
           }
           console.log(res)
           // 将showLoading设置为true 这样不会影响下次请求
@@ -103,16 +103,16 @@ class YJRequest {
         })
     })
   }
-  get<T>(config: YJRequestConfig): Promise<T> {
+  get<T>(config: YJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: YJRequestConfig): Promise<T> {
+  post<T>(config: YJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: YJRequestConfig): Promise<T> {
+  delete<T>(config: YJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: YJRequestConfig): Promise<T> {
+  patch<T>(config: YJRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
