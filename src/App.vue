@@ -5,6 +5,7 @@
     <el-button type="danger">哈哈哈</el-button>
     <el-button type="danger">哈哈哈</el-button>
   </div>
+  <router-view></router-view>
 </template>
 
 <script>
