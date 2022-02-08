@@ -34,7 +34,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       console.log('执行accountLoginAction', payload)
       const loginResult = await accountLoginRequest(payload)
       console.log(loginResult)
-      const token = loginResult.data.accessToken
+      const token = loginResult.data.token
       commit('changeToken', token)
       localCache.setCache('token', token)
       console.log(token)

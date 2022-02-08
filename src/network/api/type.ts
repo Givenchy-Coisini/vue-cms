@@ -6,7 +6,7 @@ export interface IAccount {
 export interface ILoginResult {
   id: number
   name: string
-  accessToken: string
+  token: string
 }
 
 export interface IDataType<T = any> {
