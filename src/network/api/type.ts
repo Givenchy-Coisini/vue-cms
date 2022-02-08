@@ -4,8 +4,8 @@ export interface IAccount {
 }
 
 export interface ILoginResult {
-  // id: number
-  // name: string
+  id: number
+  name: string
   accessToken: string
 }
 

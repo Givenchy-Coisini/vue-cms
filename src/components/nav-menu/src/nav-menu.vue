@@ -5,7 +5,15 @@
       <span class="title">智慧云平台</span>
     </div>
     <el-menu default-active="2" class="el-menu-vertical">
-      <!-- 36  40min -->
+      <!-- 36  40min 6-->
+      <!-- 37  13min 7-->
+      <!-- 38  23min 8-->
+      <!-- 39  20min 9-->
+      <!-- 40  18min 10-->
+      <!-- 41  15min 11-->
+      <!-- 42  15min 12-->
+      <!-- 43  12min 13-->
+      <!-- 44  20min 14-->
       <!-- <el-sub-menu index="1">
         <template #title>
           <el-icon><location /></el-icon>

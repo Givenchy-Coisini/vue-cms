@@ -7,8 +7,9 @@ module.exports = {
     port: 9999,
     proxy: {
       '^/api': {
-        // target: 'http://152.136.185.210:5000',
-        target: 'http://47.102.137.73:8086/smart-boiler',
+        target:
+          'https://www.fastmock.site/mock/657e07000910b05b5a3e83bca7d960f4/web',
+        // target: 'http://47.102.137.73:8086/smart-boiler',
         pathRewrite: {
           '^/api': ''
         },

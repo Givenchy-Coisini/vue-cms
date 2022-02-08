@@ -1,9 +1,9 @@
 import { Module } from 'vuex'
-// import {
-//   accountLoginRequest,
-//   requestUserInfoById,
-//   requestUserMenusByRoleId
-// } from '@/network/api/login'
+import {
+  accountLoginRequest,
+  requestUserInfo,
+  requestUserMenus
+} from '@/network/api/login'
 import { IAccount } from '@/network/api/type'
 import localCache from '@/utils/cache'
 import { ILoginState } from './type'
@@ -32,26 +32,24 @@ const loginModule: Module<ILoginState, IRootState> = {
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
       console.log('执行accountLoginAction', payload)
-      // const loginResult = await accountLoginRequest(payload)
-      // console.log(loginResult)
-      // const token = loginResult.data.accessToken
-      const token = 'admin'
+      const loginResult = await accountLoginRequest(payload)
+      console.log(loginResult)
+      const token = loginResult.data.accessToken
       commit('changeToken', token)
       localCache.setCache('token', token)
       console.log(token)
       // 2.发送其他请求 获取userInfo
-      // const userInfoResult = await requestUserInfoById(id)
-      // const userInfo = userInfoResult.data
-      // console.log(userInfo)
-      // commit('changeUserInfo', userInfo)
-      // localCache.setCache('userInfo', userInfo)
+      const userInfoResult = await requestUserInfo()
+      const userInfo = userInfoResult.data
+      console.log(userInfo)
+      commit('changeUserInfo', userInfo)
+      localCache.setCache('userInfo', userInfo)
       // 3.拿到对应的菜单
-      // role 报错
-      // const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
-      // const userMenus = userMenusResult.data
-      // commit('changeUserMenus', userMenus)
-      // localCache.setCache('userMenus', userMenus)
-      // console.log(userMenus)
+      const userMenusResult = await requestUserMenus()
+      const userMenus = userMenusResult.data
+      commit('changeUserMenus', userMenus)
+      localCache.setCache('userMenus', userMenus)
+      console.log(userMenus)
       // 4.跳到首页
       router.push('/main')
     },
@@ -62,11 +60,11 @@ const loginModule: Module<ILoginState, IRootState> = {
       }
       const userInfo = localCache.getCache('userInfo')
       if (userInfo) {
-        commit('changeuserInfo', userInfo)
+        commit('changeUserInfo', userInfo)
       }
       const userMenus = localCache.getCache('userMenus')
       if (userMenus) {
-        commit('changeuserMenus', userMenus)
+        commit('changeUserMenus', userMenus)
       }
     }
     // phoneLoginAction({ commit }, payload: any) {

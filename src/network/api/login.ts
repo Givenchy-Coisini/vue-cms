@@ -3,8 +3,8 @@ import { IAccount, IDataType, ILoginResult } from './type'
 
 enum LoginApi {
   AccountLogin = '/user/login',
-  LoginUserInfo = '/users/',
-  UserMenus = './role/'
+  LoginUserInfo = '/user/userInfo',
+  UserMenus = '/user/menu'
 }
 export function accountLoginRequest(account: IAccount) {
   return yjRequest.post<IDataType<ILoginResult>>({
@@ -13,13 +13,13 @@ export function accountLoginRequest(account: IAccount) {
   })
 }
 
-export function requestUserInfoById(id: number) {
+export function requestUserInfo() {
   return yjRequest.get<IDataType<ILoginResult>>({
-    url: LoginApi.LoginUserInfo + id
+    url: LoginApi.LoginUserInfo
   })
 }
-export function requestUserMenusByRoleId(id: number) {
+export function requestUserMenus() {
   return yjRequest.get<IDataType>({
-    url: LoginApi.UserMenus + id + '/menu'
+    url: LoginApi.UserMenus
   })
 }
