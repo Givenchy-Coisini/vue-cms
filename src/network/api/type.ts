@@ -1,6 +1,6 @@
 export interface IAccount {
   username: string
-  password: string
+  passwd: string
 }
 
 export interface ILoginResult {

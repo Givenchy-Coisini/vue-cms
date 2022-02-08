@@ -1,9 +1,9 @@
 import { Module } from 'vuex'
-import {
-  accountLoginRequest,
-  requestUserInfoById,
-  requestUserMenusByRoleId
-} from '@/network/api/login'
+// import {
+//   accountLoginRequest,
+//   requestUserInfoById,
+//   requestUserMenusByRoleId
+// } from '@/network/api/login'
 import { IAccount } from '@/network/api/type'
 import localCache from '@/utils/cache'
 import { ILoginState } from './type'
@@ -32,9 +32,10 @@ const loginModule: Module<ILoginState, IRootState> = {
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
       console.log('执行accountLoginAction', payload)
-      const loginResult = await accountLoginRequest(payload)
-      console.log(loginResult)
-      const token = loginResult.data.accessToken
+      // const loginResult = await accountLoginRequest(payload)
+      // console.log(loginResult)
+      // const token = loginResult.data.accessToken
+      const token = 'admin'
       commit('changeToken', token)
       localCache.setCache('token', token)
       console.log(token)
