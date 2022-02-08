@@ -1,11 +1,11 @@
 <template>
   <div class="login-account">
     <el-form label-width="60px" :rules="rules" :model="account" ref="formRef">
-      <el-form-item label="账号" prop="name">
-        <el-input v-model="account.name"></el-input>
+      <el-form-item label="账号" prop="username">
+        <el-input v-model="account.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="passwd">
-        <el-input v-model="account.passwd" show-password></el-input>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="account.password" show-password></el-input>
       </el-form-item>
     </el-form>
   </div>
@@ -21,8 +21,8 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const account = reactive({
-      name: localCache.getCache('name') ?? '',
-      passwd: localCache.getCache('password') ?? ''
+      username: localCache.getCache('name') ?? '',
+      password: localCache.getCache('password') ?? ''
     })
     const formRef = ref<InstanceType<typeof ElForm>>()
     const loginAction = (isKeepPassword: boolean) => {
@@ -31,8 +31,8 @@ export default defineComponent({
           // 1.判断是否需要记住密码
           if (isKeepPassword) {
             // 本地缓存
-            localCache.setCache('name', account.name)
-            localCache.setCache('password', account.passwd)
+            localCache.setCache('name', account.username)
+            localCache.setCache('password', account.password)
           } else {
             localCache.deleteCache('name')
             localCache.deleteCache('password')

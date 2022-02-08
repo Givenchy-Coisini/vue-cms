@@ -4,12 +4,13 @@ module.exports = {
   // 1.配置方式一：cli提供的属性
   outputDir: './build',
   devServer: {
+    port: 9999,
     proxy: {
       '^/api': {
         // target: 'http://152.136.185.210:5000',
         target: 'http://47.102.137.73:8086/smart-boiler',
         pathRewrite: {
-          '^api': ''
+          '^/api': ''
         },
         changeOrigin: true
       }

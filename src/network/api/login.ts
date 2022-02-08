@@ -2,7 +2,7 @@ import yjRequest from '../index'
 import { IAccount, IDataType, ILoginResult } from './type'
 
 enum LoginApi {
-  AccountLogin = '/login',
+  AccountLogin = '/user/login',
   LoginUserInfo = '/users/',
   UserMenus = './role/'
 }

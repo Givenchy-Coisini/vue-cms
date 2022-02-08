@@ -34,16 +34,16 @@ const loginModule: Module<ILoginState, IRootState> = {
       console.log('执行accountLoginAction', payload)
       const loginResult = await accountLoginRequest(payload)
       console.log(loginResult)
-      const { id, token } = loginResult.data
+      const token = loginResult.data.accessToken
       commit('changeToken', token)
       localCache.setCache('token', token)
-      console.log(id, token)
+      console.log(token)
       // 2.发送其他请求 获取userInfo
-      const userInfoResult = await requestUserInfoById(id)
-      const userInfo = userInfoResult.data
-      console.log(userInfo)
-      commit('changeUserInfo', userInfo)
-      localCache.setCache('userInfo', userInfo)
+      // const userInfoResult = await requestUserInfoById(id)
+      // const userInfo = userInfoResult.data
+      // console.log(userInfo)
+      // commit('changeUserInfo', userInfo)
+      // localCache.setCache('userInfo', userInfo)
       // 3.拿到对应的菜单
       // role 报错
       // const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)

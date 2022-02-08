@@ -11,7 +11,8 @@ const yjRequest = new YJRequest({
       // 携带token 的拦截
       const token = localCache.getCache('token')
       if (token) {
-        // config.headers.Authorization = `Bearer${token}`
+        // eslint-disable-next-line prettier/prettier
+        (config as any).headers.Authorization = `Bearer${token}`
       }
       return config
     },
