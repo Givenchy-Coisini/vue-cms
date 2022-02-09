@@ -34,7 +34,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       console.log('执行accountLoginAction', payload)
       const loginResult = await accountLoginRequest(payload)
       console.log(loginResult)
-      const token = loginResult.data.token
+      const token = loginResult.data.accessToken
       commit('changeToken', token)
       localCache.setCache('token', token)
       console.log(token)
@@ -46,7 +46,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       localCache.setCache('userInfo', userInfo)
       // 3.拿到对应的菜单
       const userMenusResult = await requestUserMenus()
-      const userMenus = userMenusResult.data
+      const userMenus = userMenusResult.data.userMenu
       commit('changeUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)
       console.log(userMenus)

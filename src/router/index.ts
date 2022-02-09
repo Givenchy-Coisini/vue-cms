@@ -4,7 +4,7 @@ import localCache from '@/utils/cache'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/main'
+    redirect: '/login'
   },
   {
     path: '/login',
