@@ -4,7 +4,12 @@
       <img class="img" src="~@/assets/images/logo.png" alt="logo" />
       <span class="title">智慧云平台</span>
     </div>
-    <el-menu default-active="2" class="el-menu-vertical">
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical"
+      background-color="#09203f"
+      text-color="#ffffff"
+    >
       <template v-for="item in userMenus" :key="item.id">
         <!-- 二级菜单 -->
         <template v-if="item.type === 1">
@@ -25,8 +30,8 @@
           </el-sub-menu>
         </template>
         <!-- 一级菜单 -->
-        <template v-if="item.type === 2">
-          <el-menu-item>
+        <template v-else-if="item.type === 2">
+          <el-menu-item :index="item.id">
             <svg class="icon icon-menu" aria-hidden="true">
               <use :xlink:href="`#${item.icon}`"></use>
             </svg>
@@ -34,7 +39,7 @@
           </el-menu-item>
         </template>
       </template>
-      <!-- 36  40min 6-->
+      <!-- 36  1h 42min 6-->
       <!-- 37  13min 7-->
       <!-- 38  23min 8-->
       <!-- 39  20min 9-->
@@ -83,7 +88,7 @@ export default defineComponent({
     }
   }
   // 目录
-  .el-submenu {
+  .el-sub-menu {
     background-color: #001529 !important;
     .el-menu-item {
       padding-left: 50px !important;
