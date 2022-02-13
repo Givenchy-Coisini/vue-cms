@@ -2,13 +2,14 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/images/logo.png" alt="logo" />
-      <span class="title">智慧云平台</span>
+      <span v-if="!collapse" class="title">智慧云平台</span>
     </div>
     <el-menu
       default-active="2"
       class="el-menu-vertical"
       background-color="#09203f"
       text-color="#ffffff"
+      :collapse="collapse"
     >
       <template v-for="item in userMenus" :key="item.id">
         <!-- 二级菜单 -->
@@ -39,7 +40,6 @@
           </el-menu-item>
         </template>
       </template>
-      <!-- 36  1h 42min 6-->
       <!-- 37  13min 7-->
       <!-- 38  23min 8-->
       <!-- 39  20min 9-->
@@ -56,6 +56,12 @@
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
 export default defineComponent({
+  props: {
+    collapse: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
@@ -88,6 +94,9 @@ export default defineComponent({
     }
   }
   // 目录
+  .el-menu {
+    border-right: none;
+  }
   .el-sub-menu {
     background-color: #001529 !important;
     .el-menu-item {
