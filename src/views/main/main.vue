@@ -9,7 +9,8 @@
           <nav-header @foldChange="handleFoldChange"></nav-header>
         </el-header>
         <el-main class="page-content">
-          <h2>欢迎来到低氮冷凝高效燃气锅炉智慧云平台</h2>
+          <router-view></router-view>
+          <!-- <h2>欢迎来到低氮冷凝高效燃气锅炉智慧云平台</h2> -->
         </el-main>
       </el-container>
     </el-container>
