@@ -8,7 +8,7 @@
     </div>
     <div class="content">
       <div>面包蟹</div>
-      <!-- <navUserInfo></navUserInfo> -->
+      <userInfo></userInfo>
     </div>
   </div>
 </template>
@@ -16,11 +16,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { Fold, Expand } from '@element-plus/icons-vue'
-
+import userInfo from './user-info.vue'
 export default defineComponent({
   components: {
     Fold,
-    Expand
+    Expand,
+    userInfo
   },
   emits: ['foldChange'],
   setup(props, ctx) {

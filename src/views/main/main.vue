@@ -9,7 +9,9 @@
           <nav-header @foldChange="handleFoldChange"></nav-header>
         </el-header>
         <el-main class="page-content">
-          <router-view></router-view>
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
           <!-- <h2>欢迎来到低氮冷凝高效燃气锅炉智慧云平台</h2> -->
         </el-main>
       </el-container>
@@ -53,6 +55,10 @@ export default defineComponent({
 
 .page-content {
   height: calc(100%-48px);
+  .page-info {
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
 .el-header,
 .el-footer {
