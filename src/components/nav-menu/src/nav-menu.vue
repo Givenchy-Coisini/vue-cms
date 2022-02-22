@@ -5,7 +5,7 @@
       <span v-if="!collapse" class="title">智慧云平台</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       background-color="#09203f"
       text-color="#ffffff"
@@ -42,7 +42,7 @@
           </el-menu-item>
         </template>
       </template>
-      <!-- 38  23min 8-->
+      <!-- 38  45min 8-->
       <!-- 39  20min 9-->
       <!-- 40  18min 10-->
       <!-- 41  15min 11-->
@@ -53,9 +53,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
-import { useRouter } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
+import { useRouter, useRoute } from 'vue-router'
 export default defineComponent({
   props: {
     collapse: {
@@ -64,9 +65,17 @@ export default defineComponent({
     }
   },
   setup() {
+    // store
     const store = useStore()
-    const router = useRouter()
     const userMenus = computed(() => store.state.login.userMenus)
+    // router
+    const router = useRouter()
+    const route = useRoute()
+    const currentPath = route.path
+
+    // data
+    const menu = pathMapToMenu(userMenus.value, currentPath)
+    const defaultValue = ref(menu.id + '')
     console.log(userMenus)
     const handleMenuItemClick = (item: any) => {
       router.push({
@@ -75,6 +84,7 @@ export default defineComponent({
     }
     return {
       userMenus,
+      defaultValue,
       handleMenuItemClick
     }
   }
