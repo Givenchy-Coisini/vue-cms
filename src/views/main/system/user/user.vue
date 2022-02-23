@@ -1,14 +1,14 @@
 <template>
   <div class="user">
     <div class="search">
-      <yj-form v-bind="formConfig"></yj-form>
+      <yj-form v-bind="formConfig" v-model="formData"></yj-form>
     </div>
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import YjForm from '@/base-ui/form'
 import { formConfig } from './config/search.config'
 export default defineComponent({
@@ -17,8 +17,16 @@ export default defineComponent({
     YjForm
   },
   setup() {
+    const formData = ref({
+      id: '',
+      name: '',
+      password: '',
+      sport: '',
+      createTime: ''
+    })
     return {
-      formConfig
+      formConfig,
+      formData
     }
   }
 })

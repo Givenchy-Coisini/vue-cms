@@ -12,11 +12,13 @@
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'password'"
+                  v-model="formData[`${item.field}`]"
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   v-bind="item.otherOptions"
+                  v-model="formData[`${item.field}`]"
                   :placeholder="item.placeholder"
                   style="width: 100%"
                 >
@@ -31,6 +33,7 @@
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                   v-bind="item.otherOptions"
                 ></el-date-picker>
               </template>
@@ -43,10 +46,14 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue'
+import { PropType, defineComponent, ref, watch } from 'vue'
 import { IFormItem } from '../types'
 export default defineComponent({
   props: {
+    modelValue: {
+      type: Object,
+      require: true
+    },
     formItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => []
@@ -70,8 +77,22 @@ export default defineComponent({
       })
     }
   },
-  setup() {
-    return {}
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const formData = ref({ ...props.modelValue })
+    watch(
+      formData,
+      (newValue) => {
+        console.log(newValue)
+        emit('update:modelValue', newValue)
+      },
+      {
+        deep: true
+      }
+    )
+    return {
+      formData
+    }
   }
 })
 </script>

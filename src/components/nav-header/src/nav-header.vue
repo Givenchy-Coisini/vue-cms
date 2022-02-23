@@ -7,21 +7,26 @@
       </el-icon>
     </div>
     <div class="content">
-      <div>面包蟹</div>
+      <yj-breadcrumb :breadcrumbs="breadcrumbs"></yj-breadcrumb>
       <userInfo></userInfo>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { Fold, Expand } from '@element-plus/icons-vue'
 import userInfo from './user-info.vue'
+import { pathMapBreadcrumbs } from '@/utils/map-menus'
+import YjBreadcrumb from '@/base-ui/breadcrumb'
+import { useStore } from '@/store'
+import { useRoute } from 'vue-router'
 export default defineComponent({
   components: {
     Fold,
     Expand,
-    userInfo
+    userInfo,
+    YjBreadcrumb
   },
   emits: ['foldChange'],
   setup(props, ctx) {
@@ -30,8 +35,17 @@ export default defineComponent({
       isFold.value = !isFold.value
       ctx.emit('foldChange', isFold.value)
     }
+    // 面包屑数组
+    const store = useStore()
+    const breadcrumbs = computed(() => {
+      const userMenus = store.state.login.userMenus
+      const route = useRoute()
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
     return {
       isFold,
+      breadcrumbs,
       handleFoldClick
     }
   }

@@ -4,8 +4,10 @@ export const formConfig: IForm = {
   itemLayout: { padding: '5px 30px' },
   colLayout: { span: 8 },
   formItems: [
+    { field: 'id', type: 'input', label: 'id', placeholder: '请输入id' },
     {
       type: 'input',
+      field: 'name',
       label: '用户名',
       rules: [],
       placeholder: '请输入用户名'
@@ -13,11 +15,13 @@ export const formConfig: IForm = {
     {
       type: 'password',
       label: '密码',
+      field: 'password',
       rules: [],
       placeholder: '请输入密码'
     },
     {
       type: 'select',
+      field: 'sport',
       label: '喜欢的运动',
       rules: [],
       placeholder: '请选择喜欢的运动',
@@ -27,6 +31,7 @@ export const formConfig: IForm = {
       ]
     },
     {
+      field: 'createTime',
       type: 'datepicker',
       label: '创建时间',
       rules: [],
