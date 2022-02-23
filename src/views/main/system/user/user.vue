@@ -1,32 +1,22 @@
 <template>
   <div class="user">
-    <div class="search">
-      <yj-form v-bind="formConfig" v-model="formData"></yj-form>
-    </div>
+    <page-search :formConfig="formConfig"></page-search>
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import YjForm from '@/base-ui/form'
+import { defineComponent } from 'vue'
 import { formConfig } from './config/search.config'
+import PageSearch from '@/components/page-search'
 export default defineComponent({
   name: 'user',
   components: {
-    YjForm
+    PageSearch
   },
   setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
     return {
-      formConfig,
-      formData
+      formConfig
     }
   }
 })
