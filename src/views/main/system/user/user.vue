@@ -5,7 +5,12 @@
       <yj-table :listData="userList" :propList="propList">
         <!-- 插槽 -->
         <template #status="scope">
-          <el-button>{{ scope.row.status ? '启用' : '禁用' }}</el-button>
+          <el-button
+            size="mini"
+            plain
+            :type="scope.row.status ? 'success' : 'danger'"
+            >{{ scope.row.status ? '启用' : '禁用' }}</el-button
+          >
         </template>
       </yj-table>
     </div>

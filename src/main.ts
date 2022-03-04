@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import '../src/assets/iconfont_svg.js'
 import ElementPlus from 'element-plus'
+import { globalRegister } from './global'
 // import 'normalize.css'
 import './assets/css/index.less'
 import 'element-plus/dist/index.css'
@@ -12,6 +13,7 @@ import { setupStore } from './store'
 const app = createApp(App)
 app.use(store)
 app.use(ElementPlus)
+app.use(globalRegister)
 setupStore()
 app.use(router)
 

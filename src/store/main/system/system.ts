@@ -46,7 +46,7 @@ const systemModule: Module<ISystemState, IRootState> = {
           name: 'zhanghaochen',
           realname: 'zhanghaochen',
           cellphone: '166399999',
-          status: 1
+          status: 0
         }
       ]
       const totalCount = 10
