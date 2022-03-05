@@ -10,7 +10,9 @@ const systemModule: Module<ISystemState, IRootState> = {
       usersList: [],
       usersCount: 0,
       roleList: [],
-      roleCount: 0
+      roleCount: 0,
+      goodsList: [],
+      goodsCount: 0
     }
   },
   mutations: {
@@ -25,6 +27,12 @@ const systemModule: Module<ISystemState, IRootState> = {
     },
     changeRoleCount(state, roleCount: number) {
       state.roleCount = roleCount
+    },
+    changeGoodsList(state, goodsList: any[]) {
+      state.goodsList = goodsList
+    },
+    changeGoodsCount(state, goodsCount: number) {
+      state.goodsCount = goodsCount
     }
   },
   getters: {
@@ -92,6 +100,29 @@ const systemModule: Module<ISystemState, IRootState> = {
           intro: 'zhanghaochen'
         }
       ]
+      const goodslist = [
+        {
+          id: 1,
+          name: 'fuyongjie',
+          oldPrice: '20',
+          newPrice: '15',
+          imgUrl: 'https://s3.bmp.ovh/imgs/2022/02/9bf05e0340b0adfc.jpg'
+        },
+        {
+          id: 2,
+          name: 'admin',
+          oldPrice: '20',
+          newPrice: '15',
+          imgUrl: 'https://s3.bmp.ovh/imgs/2022/02/9bf05e0340b0adfc.jpg'
+        },
+        {
+          id: 3,
+          name: 'zhanghaochenzhanghaochenzhanghaochenzhanghaochen',
+          oldPrice: '20',
+          newPrice: '15',
+          imgUrl: 'https://s3.bmp.ovh/imgs/2022/02/9bf05e0340b0adfc.jpg'
+        }
+      ]
       const totalCount = 10
       switch (pageName) {
         case 'users':
@@ -101,6 +132,10 @@ const systemModule: Module<ISystemState, IRootState> = {
         case 'role':
           commit('changeRoleList', rolelist)
           commit('changeRoleCount', totalCount)
+          break
+        case 'goods':
+          commit('changeGoodsList', goodslist)
+          commit('changeGoodsCount', totalCount)
           break
       }
     }

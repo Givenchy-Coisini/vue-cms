@@ -26,6 +26,23 @@
           <el-button size="mini" type="text" style="color: red">删除</el-button>
         </div>
       </template>
+      <!-- <template #imgUrl="scope">
+        <el-image
+          :src="scope.row.imgUrl"
+          style="width: 60px; height: 60px"
+          :preview-src-list="[scope.row.imgUrl]"
+        ></el-image>
+      </template> -->
+      <!-- 动态获取剩余插槽 -->
+      <template
+        v-for="item in otherPropSlots"
+        :key="item.prop"
+        #[item.slotName]="scope"
+      >
+        <template v-if="item.slotName">
+          <slot :name="item.slotName" :row="scope.row"></slot>
+        </template>
+      </template>
     </yj-table>
   </div>
 </template>
@@ -84,10 +101,19 @@ export default defineComponent({
       // 这里可以接受到子组件传过来的数据
       console.log(val)
     }
+    // 获取其他的动态插槽名称
+    const otherPropSlots = props.contentTableConfig?.propList.filter(
+      (item: any) => {
+        if (item.slotName === 'status') return false
+        if (item.slotName === 'handler') return false
+        return true
+      }
+    )
     return {
       dataList,
       dataCount,
       pageInfo,
+      otherPropSlots,
       selectionChange,
       getPageData
     }
