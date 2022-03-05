@@ -6,7 +6,7 @@
       </template>
       <template #footer>
         <div class="footer-btns">
-          <el-button>重置</el-button>
+          <el-button @click="handleResetClick">重置</el-button>
           <el-button type="primary">查询</el-button>
         </div>
       </template>
@@ -28,15 +28,19 @@ export default defineComponent({
       require: true
     }
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
-    return { formData }
+  setup(props) {
+    // 双向绑定的属性应该是由配置文件中的field来决定的
+    const formItems = props.formConfig?.formItems ?? []
+    const fromOriginData: any = []
+    for (const item of formItems) {
+      fromOriginData[item.filed] = ''
+    }
+    const formData = ref(fromOriginData)
+    // 重置
+    const handleResetClick = () => {
+      formData.value = fromOriginData
+    }
+    return { formData, handleResetClick }
   }
 })
 </script>

@@ -7,18 +7,18 @@ const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state() {
     return {
-      userList: [],
-      userCount: 0,
+      usersList: [],
+      usersCount: 0,
       roleList: [],
       roleCount: 0
     }
   },
   mutations: {
-    changeUserList(state, userList: any[]) {
-      state.userList = userList
+    changeUsersList(state, usersList: any[]) {
+      state.usersList = usersList
     },
-    changeUserCount(state, userCount: number) {
-      state.userCount = userCount
+    changeUsersCount(state, usersCount: number) {
+      state.usersCount = usersCount
     },
     changeRoleList(state, roleList: any[]) {
       state.roleList = roleList
@@ -30,12 +30,13 @@ const systemModule: Module<ISystemState, IRootState> = {
   getters: {
     pageListData(state) {
       return (pageName: string) => {
-        switch (pageName) {
-          case 'user':
-            return state.userList
-          case 'role':
-            return state.roleList
-        }
+        return (state as any)[`${pageName}List`]
+        // switch (pageName) {
+        //   case 'users':
+        //     return state.usersList
+        //   case 'role':
+        //     return state.roleList
+        // }
       }
     }
   },
@@ -43,20 +44,16 @@ const systemModule: Module<ISystemState, IRootState> = {
     async getPageListAction({ commit }, payload: any) {
       console.log(payload)
       const pageName = payload.pageName
-      // let pageUrl = ''
-      // switch (pageName) {
-      //   case 'user':
-      //     pageUrl = 'api/users/list'
-      //     break
-      //   case 'role':
-      //     pageUrl = 'api/role/list'
-      //     break
-      // }
+      // const pageUrl = `/${pageName}/list`
       // 1.对页面发送请求
       // const pageResult = await getPageListData(pageUrl, payload.queryInfo)
       // console.log(pageResult)
       // const { list, totalCount } = pageResult.data
-      const userlist = [
+      // const changePageName =
+      // (pageName.slice(0, 1) as string).toUpperCase() + pageName.slice(1)
+      // commit(`change${changePageName}List`, list)
+      // commit(`change${changePageName}Count`, totalCount)
+      const userslist = [
         {
           id: 1,
           name: 'fuyongjie',
@@ -98,17 +95,15 @@ const systemModule: Module<ISystemState, IRootState> = {
       ]
       const totalCount = 10
       switch (pageName) {
-        case 'user':
-          commit('changeUserList', userlist)
-          commit('changeUserCount', totalCount)
+        case 'users':
+          commit('changeUsersList', userslist)
+          commit('changeUsersCount', totalCount)
           break
         case 'role':
           commit('changeRoleList', rolelist)
           commit('changeRoleCount', totalCount)
           break
       }
-      // commit(`change${pageName.toUpperCase()}List`, list)
-      // commit(`change${pageName.toUpperCase()}Count`, totalCount)
     }
   }
 }
