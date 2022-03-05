@@ -79,11 +79,11 @@ export default defineComponent({
     showSelectColumn: {
       type: Boolean,
       default: false
-    },
-    childrenProps: {
-      type: Object,
-      default: () => ({})
     }
+    // childrenProps: {
+    //   type: Object,
+    //   default: () => ({})
+    // }
   },
   emits: ['selectionChange'],
   setup(props, { emit }) {
