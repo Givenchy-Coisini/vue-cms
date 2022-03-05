@@ -8,7 +8,11 @@
 ![](https://s3.bmp.ovh/imgs/2022/02/9bf05e0340b0adfc.jpg)
 
 ### 主页面
-![](https://s3.bmp.ovh/imgs/2022/02/5770d5bb9b209e04.png)
+![](https://s3.bmp.ovh/imgs/2022/03/c08fc46d0c611c9a.png)
+
+### 用户权限
+![](https://s3.bmp.ovh/imgs/2022/03/0fde5609fd5e380e.png)
+
 
 
 ## 感谢
