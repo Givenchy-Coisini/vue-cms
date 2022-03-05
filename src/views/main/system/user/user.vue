@@ -2,8 +2,19 @@
   <div class="user">
     <page-search :formConfig="formConfig"></page-search>
     <div class="content">
-      <yj-table :listData="userList" :propList="propList">
-        <!-- 插槽 -->
+      <yj-table
+        :listData="userList"
+        :propList="propList"
+        :showIndexColumn="showIndexColumn"
+        :showSelectColumn="showSelectColumn"
+        :title="title"
+        @selectionChange="selectionChange"
+      >
+        <!-- header中的插槽 -->
+        <template #headerHandler>
+          <el-button size="medium" type="primary">新建用户</el-button>
+        </template>
+        <!-- 列中数据插槽 -->
         <template #status="scope">
           <el-button
             size="mini"
@@ -11,6 +22,14 @@
             :type="scope.row.status ? 'success' : 'danger'"
             >{{ scope.row.status ? '启用' : '禁用' }}</el-button
           >
+        </template>
+        <template #handler>
+          <div class="handle-btns">
+            <el-button size="mini" type="text">编辑</el-button>
+            <el-button size="mini" type="text" style="color: red"
+              >删除</el-button
+            >
+          </div>
         </template>
       </yj-table>
     </div>
@@ -41,6 +60,8 @@ export default defineComponent({
     const userList = computed(() => store.state.system.userList)
     const userCount = computed(() => store.state.system.userCount)
 
+    const title = '用户列表'
+
     const propList = [
       { prop: 'name', label: '用户名', minWidth: '100', slotName: 'name' },
       {
@@ -60,13 +81,29 @@ export default defineComponent({
         label: '状态',
         minWidth: '100',
         slotName: 'status'
+      },
+      {
+        label: '操作',
+        minWidth: '120',
+        slotName: 'handler'
       }
     ]
+
+    const showIndexColumn = true
+    const showSelectColumn = true
+    const selectionChange = (val: any) => {
+      // 这里可以接受到子组件传过来的数据
+      console.log(val)
+    }
     return {
       formConfig,
       userList,
       userCount,
-      propList
+      showIndexColumn,
+      showSelectColumn,
+      propList,
+      title,
+      selectionChange
     }
   }
 })
