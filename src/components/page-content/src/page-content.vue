@@ -48,15 +48,20 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore()
-
-    store.dispatch('system/getPageListAction', {
-      // pageUrl: '/users/list',
-      pageName: props.pageName,
-      queryInfo: {
-        offest: 0,
-        size: 10
-      }
-    })
+    // 发送网络请求
+    const getPageData = (queryInfo: any = {}) => {
+      store.dispatch('system/getPageListAction', {
+        // pageUrl: '/users/list',
+        pageName: props.pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10,
+          ...queryInfo
+        }
+      })
+    }
+    getPageData()
+    // 从vuex中获取数据
     const dataList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
@@ -69,7 +74,8 @@ export default defineComponent({
     }
     return {
       dataList,
-      selectionChange
+      selectionChange,
+      getPageData
     }
   }
 })

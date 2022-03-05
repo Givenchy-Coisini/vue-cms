@@ -4,7 +4,7 @@ export const formConfig: IForm = {
   itemLayout: { padding: '5px 30px' },
   colLayout: { span: 8 },
   formItems: [
-    { field: 'id', type: 'input', label: 'id', placeholder: '请输入id' },
+    // { field: 'id', type: 'input', label: 'id', placeholder: '请输入id' },
     {
       type: 'input',
       field: 'name',
@@ -13,21 +13,28 @@ export const formConfig: IForm = {
       placeholder: '请输入用户名'
     },
     {
-      type: 'password',
-      label: '密码',
-      field: 'password',
+      type: 'input',
+      label: '真实姓名',
+      field: 'realname',
       rules: [],
-      placeholder: '请输入密码'
+      placeholder: '请输入真实姓名'
+    },
+    {
+      type: 'input',
+      label: '电话号码',
+      field: 'cellphone',
+      rules: [],
+      placeholder: '请输入电话号码'
     },
     {
       type: 'select',
-      field: 'sport',
-      label: '喜欢的运动',
+      field: 'enable',
+      label: '用户状态',
       rules: [],
-      placeholder: '请选择喜欢的运动',
+      placeholder: '请选择用户状态',
       options: [
-        { title: '篮球', value: 'basketball' },
-        { title: '足球', value: 'football' }
+        { title: '启用', value: 1 },
+        { title: '禁用', value: 0 }
       ]
     },
     {
