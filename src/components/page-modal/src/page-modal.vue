@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import YjForm from '@/base-ui/form'
 
 export default defineComponent({
@@ -31,11 +31,24 @@ export default defineComponent({
     modalConfig: {
       type: Object,
       required: true
+    },
+    defaultInfo: {
+      type: Object,
+      default: () => ({})
     }
   },
-  setup() {
-    const centerDialogVisible = ref(true)
-    const formData = ref({})
+
+  setup(props) {
+    const centerDialogVisible = ref(false)
+    const formData = ref<any>({})
+    watch(
+      () => props.defaultInfo,
+      (newValue) => {
+        for (const item of props.modalConfig.formItems) {
+          formData.value[`${item.field}`] = newValue[`${item.field}`]
+        }
+      }
+    )
     return { formData, centerDialogVisible }
   }
 })

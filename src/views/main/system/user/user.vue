@@ -8,9 +8,15 @@
     <page-content
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
+      @newBtnClick="handleNewData"
+      @editBtnClick="handleEditData"
       pageName="users"
     ></page-content>
-    <page-modal :modalConfig="modalConfig"></page-modal>
+    <page-modal
+      :defaultInfo="defaultInfo"
+      :modalConfig="modalConfig"
+      ref="pageModalRef"
+    ></page-modal>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import PageModal from '@/components/page-modal'
 // import { usePageSearch } from '@/hooks/usePageSearch'
+// import { usePageModal } from '@/hooks/usePageModal'
 export default defineComponent({
   name: 'users',
   components: {
@@ -33,7 +40,10 @@ export default defineComponent({
   setup() {
     // 封装hooks
     // const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
+    // const [pageModalRef, handleEditData, handleNewData,defaultInfo] = usePageModal()
     const pageContentRef = ref<InstanceType<typeof PageContent>>()
+    const pageModalRef = ref<InstanceType<typeof PageModal>>()
+    const defaultInfo = ref({})
     const handleResetClick = () => {
       pageContentRef.value?.getPageData()
     }
@@ -41,13 +51,29 @@ export default defineComponent({
       console.log('正在处理这个方法，看看会不会报错')
       pageContentRef.value?.getPageData(queryInfo)
     }
+    const handleNewData = () => {
+      console.log('xxx')
+      if (pageModalRef.value) {
+        pageModalRef.value.centerDialogVisible = true
+      }
+    }
+    const handleEditData = (item: any) => {
+      defaultInfo.value = { ...item }
+      if (pageModalRef.value) {
+        pageModalRef.value.centerDialogVisible = true
+      }
+    }
     return {
       formConfig,
       contentTableConfig,
       modalConfig,
       pageContentRef,
+      pageModalRef,
       handleResetClick,
-      handleQueryClick
+      handleQueryClick,
+      handleNewData,
+      handleEditData,
+      defaultInfo
     }
   }
 })

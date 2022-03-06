@@ -9,7 +9,9 @@
     >
       <!-- header中的插槽 -->
       <template #headerHandler>
-        <el-button size="medium" type="primary">新建用户</el-button>
+        <el-button size="medium" type="primary" @click="handleNewClick"
+          >新建用户</el-button
+        >
       </template>
       <!-- 列中数据插槽 -->
       <template #status="scope">
@@ -22,7 +24,9 @@
       </template>
       <template #handler="scope">
         <div class="handle-btns">
-          <el-button size="mini" type="text">编辑</el-button>
+          <el-button size="mini" type="text" @click="handleEditClick(scope.row)"
+            >编辑</el-button
+          >
           <el-button
             size="mini"
             type="text"
@@ -72,7 +76,8 @@ export default defineComponent({
   components: {
     YjTable
   },
-  setup(props) {
+  emits: ['newBtnClick', 'editBtnClick'],
+  setup(props, { emit }) {
     const store = useStore()
     // isCreate 导出 在新建用户按钮处v-if判断
     const isCreate = usePermission(props.pageName, 'create')
@@ -131,6 +136,21 @@ export default defineComponent({
         id: item.id
       })
     }
+    const handleNewClick = () => {
+      console.log('handleNewClick')
+      emit('newBtnClick')
+      // store.dispatch('system/deletePageDataAction', {
+      //   pageName: props.pageName,
+      //   id: item.id
+      // })
+    }
+    const handleEditClick = (item: any) => {
+      emit('editBtnClick', item)
+      // store.dispatch('system/deletePageDataAction', {
+      //   pageName: props.pageName,
+      //   id: item.id
+      // })
+    }
     return {
       dataList,
       dataCount,
@@ -138,7 +158,9 @@ export default defineComponent({
       otherPropSlots,
       selectionChange,
       getPageData,
-      handleDeleteClick
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick
     }
   }
 })
