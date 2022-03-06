@@ -25,7 +25,7 @@ export default defineComponent({
   props: {
     formConfig: {
       type: Object,
-      require: true
+      required: true
     }
   },
   emits: ['resetBtnClick', 'queryBtnClick'],

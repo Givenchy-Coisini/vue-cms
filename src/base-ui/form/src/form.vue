@@ -58,7 +58,7 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Object,
-      require: true
+      required: true
     },
     formItems: {
       type: Array as PropType<IFormItem[]>,

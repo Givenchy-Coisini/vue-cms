@@ -50,16 +50,17 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
 import YjTable from '@/base-ui/table'
+import { usePermission } from '@/hooks/usePermission'
 import { useStore } from '@/store'
 export default defineComponent({
   props: {
     contentTableConfig: {
       type: Object,
-      require: true
+      required: true
     },
     pageName: {
       type: String,
-      require: true
+      required: true
     }
   },
   components: {
@@ -67,6 +68,12 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore()
+    // isCreate 导出 在新建用户按钮处v-if判断
+    const isCreate = usePermission(props.pageName, 'create')
+    const isUpdate = usePermission(props.pageName, 'update')
+    const isDelete = usePermission(props.pageName, 'delete')
+    const isQuery = usePermission(props.pageName, 'query')
+    // 获取操作权限
 
     // 双向绑定pageInfo
     const pageInfo = ref({
@@ -76,6 +83,7 @@ export default defineComponent({
     watch(pageInfo, () => getPageData())
     // 发送网络请求
     const getPageData = (queryInfo: any = {}) => {
+      // if (!isQuery) return
       store.dispatch('system/getPageListAction', {
         // pageUrl: '/users/list',
         pageName: props.pageName,
