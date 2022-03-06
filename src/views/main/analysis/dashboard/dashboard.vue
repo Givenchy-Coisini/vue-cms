@@ -1,6 +1,5 @@
 <template>
   <!-- 面包屑暂时有些问题 -->
-  <!-- 43  2h 31min 3h 07  echats-->
   <div class="dashboard">
     <el-row :gutter="10">
       <el-col :span="7">
@@ -10,7 +9,10 @@
         </yj-card>
       </el-col>
       <el-col :span="10">
-        <yj-card title="不同城市商品销量"></yj-card>
+        <yj-card title="不同城市商品销量">
+          <!-- 地图echart暂且不写 -->
+          <line-echart :lineData="[]"></line-echart>
+        </yj-card>
       </el-col>
       <el-col :span="7">
         <yj-card title="分类商品数量(玫瑰图)">

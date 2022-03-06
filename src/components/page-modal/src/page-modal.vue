@@ -60,7 +60,6 @@ export default defineComponent({
     )
     const handleConfirmClick = () => {
       centerDialogVisible.value = false
-      console.log('queding')
       if (Object.keys(props.defaultInfo).length) {
         store.dispatch('system/updatePageDataAction', {
           pageName: props.pageName,

@@ -130,14 +130,12 @@ export default defineComponent({
     )
 
     const handleDeleteClick = (item: any) => {
-      console.log('dianjisc', item)
       store.dispatch('system/deletePageDataAction', {
         pageName: props.pageName,
         id: item.id
       })
     }
     const handleNewClick = () => {
-      console.log('handleNewClick')
       emit('newBtnClick')
       // store.dispatch('system/deletePageDataAction', {
       //   pageName: props.pageName,

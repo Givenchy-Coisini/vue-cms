@@ -101,7 +101,6 @@ export default defineComponent({
   emits: ['selectionChange', 'update:page'],
   setup(props, { emit }) {
     const handleSelectChange = (value: any) => {
-      // console.log(value)
       emit('selectionChange', value)
     }
     const handleCurrentChange = (currentPage: number) => {
