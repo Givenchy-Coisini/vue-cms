@@ -13,6 +13,11 @@
 ### 用户权限
 ![](https://s3.bmp.ovh/imgs/2022/03/0fde5609fd5e380e.png)
 
+##  货物管理
+![](https://s3.bmp.ovh/imgs/2022/03/4690f5a060b63a85.png)
+
+## dashbord
+![](https://s3.bmp.ovh/imgs/2022/03/cdd12a2d3ef1cfc1.png)
 
 
 ## 感谢
