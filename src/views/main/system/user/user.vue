@@ -14,10 +14,10 @@
     ></page-content>
     <page-modal
       :defaultInfo="defaultInfo"
+      pageName="users"
       :modalConfig="modalConfigRef"
       ref="pageModalRef"
     ></page-modal>
-    <!-- 41  2h 37 min 11   3h 16  xinjian-->
     <!-- 42  15min 12   3h 06  jibenkaifawanbi-->
     <!-- 43  20min 13   3h 07  echats-->
   </div>

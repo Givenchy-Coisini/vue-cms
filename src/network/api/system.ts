@@ -12,3 +12,17 @@ export function deletePageData(url: string) {
     url
   })
 }
+
+export function createPageData(url: string, newData: any) {
+  return yjRequest.post<IDataType>({
+    url,
+    data: newData
+  })
+}
+
+export function updatePageData(url: string, editData: any) {
+  return yjRequest.patch<IDataType>({
+    url,
+    data: editData
+  })
+}

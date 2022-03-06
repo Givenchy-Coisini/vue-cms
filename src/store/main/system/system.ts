@@ -1,6 +1,6 @@
 import { IRootState } from '@/store/type'
 import { Module } from 'vuex'
-// import { getPageListData,deletePageData } from '@/network/api/system'
+// import { getPageListData,deletePageData,updatePageData,createPageData } from '@/network/api/system'
 import { ISystemState } from './type'
 
 const systemModule: Module<ISystemState, IRootState> = {
@@ -153,6 +153,34 @@ const systemModule: Module<ISystemState, IRootState> = {
         }
       })
     }
+    // async createPageDataAction(context, payload: any) {
+    //   const { pageName, newData } = payload
+    //   // const pageUrl = `/${pageName}`
+    //   // await createPageData(pageUrl,newData)
+    //   // 重新获取最新的数据
+    //   context.dispatch('getPageListAction', {
+    //     pageName,
+    //     // 仍需要有些改进
+    //     queryInfo: {
+    //       offset: 0,
+    //       size: 10
+    //     }
+    //   })
+    // },
+    // async updatePageDataAction(context, payload: any) {
+    //   const { pageName, editData,id } = payload
+    //   // const pageUrl = `/${pageName}/${id}`
+    //   // await updatePageData(pageUrl,editData)
+    //   // 重新获取最新的数据
+    //   context.dispatch('getPageListAction', {
+    //     pageName,
+    //     // 仍需要有些改进
+    //     queryInfo: {
+    //       offset: 0,
+    //       size: 10
+    //     }
+    //   })
+    // }
   }
 }
 
