@@ -1,6 +1,6 @@
 <template>
   <!-- 面包屑暂时有些问题 -->
-  <!-- 43  1h 35min 3h 07  echats-->
+  <!-- 43  1h 45min 3h 07  echats-->
   <div class="dashboard">
     <el-row :gutter="10">
       <el-col :span="7">
