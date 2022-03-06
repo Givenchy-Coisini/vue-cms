@@ -1,16 +1,24 @@
 <template>
   <div class="menu">
-    <h2>menu</h2>
+    <page-content
+      :contentTableConfig="contentTableConfig"
+      pageName="menu"
+    ></page-content>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import PageContent from '@/components/page-content'
+import { contentTableConfig } from './config/content.config'
 export default defineComponent({
   name: 'yj-menu',
+  // 处理展开表格处理
+  components: {
+    PageContent
+  },
   setup() {
-    return {}
+    return { contentTableConfig }
   }
 })
 </script>
