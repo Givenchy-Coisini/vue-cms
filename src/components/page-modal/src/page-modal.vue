@@ -4,6 +4,7 @@
       title="新建用户"
       v-model="centerDialogVisible"
       center
+      destroy-on-close
       width="30%"
     >
       <yj-form v-bind="modalConfig" v-model="formData"></yj-form>

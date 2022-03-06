@@ -17,6 +17,9 @@
       :modalConfig="modalConfig"
       ref="pageModalRef"
     ></page-modal>
+    <!-- 41  1h 51 min 11   3h 16  xinjian-->
+    <!-- 42  15min 12   3h 06  jibenkaifawanbi-->
+    <!-- 43  20min 13   3h 07  echats-->
   </div>
 </template>
 
@@ -40,7 +43,7 @@ export default defineComponent({
   setup() {
     // 封装hooks
     // const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
-    // const [pageModalRef, handleEditData, handleNewData,defaultInfo] = usePageModal()
+    // const [pageModalRef, handleEditData, handleNewData,defaultInfo] = usePageModal(newCallback,editCallback)
     const pageContentRef = ref<InstanceType<typeof PageContent>>()
     const pageModalRef = ref<InstanceType<typeof PageModal>>()
     const defaultInfo = ref({})
@@ -53,6 +56,7 @@ export default defineComponent({
     }
     const handleNewData = () => {
       console.log('xxx')
+      defaultInfo.value = {}
       if (pageModalRef.value) {
         pageModalRef.value.centerDialogVisible = true
       }
@@ -63,6 +67,19 @@ export default defineComponent({
         pageModalRef.value.centerDialogVisible = true
       }
     }
+    // 新增和编辑是否隐藏对应的item
+    // const newCallback = () => {
+    //   const passwordItem = modalConfig.formItems.find(
+    //     (item) => item.field === 'password'
+    //   )
+    //   passwordItem!.isHidden = false
+    // }
+    // const editCallback = () => {
+    //   const passwordItem = modalConfig.formItems.find(
+    //     (item) => item.field === 'password'
+    //   )
+    //   passwordItem!.isHidden = true
+    // }
     return {
       formConfig,
       contentTableConfig,

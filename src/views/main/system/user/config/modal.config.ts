@@ -18,7 +18,8 @@ export const modalConfig: IForm = {
       label: '真实姓名',
       field: 'realname',
       rules: [],
-      placeholder: '请输入真实姓名'
+      placeholder: '请输入真实姓名',
+      isHidden: true
     }
     // {
     //   type: 'input',
