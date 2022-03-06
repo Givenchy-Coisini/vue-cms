@@ -146,7 +146,7 @@ const systemModule: Module<ISystemState, IRootState> = {
       // 重新获取最新的数据
       context.dispatch('getPageListAction', {
         pageName,
-        // 仍有些改进
+        // 仍需要有些改进
         queryInfo: {
           offset: 0,
           size: 10

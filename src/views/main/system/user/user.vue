@@ -10,22 +10,25 @@
       :contentTableConfig="contentTableConfig"
       pageName="users"
     ></page-content>
+    <page-modal :modalConfig="modalConfig"></page-modal>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { formConfig } from './config/search.config'
+import { modalConfig } from './config/modal.config'
 import { contentTableConfig } from './config/content.config'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
-
+import PageModal from '@/components/page-modal'
 // import { usePageSearch } from '@/hooks/usePageSearch'
 export default defineComponent({
   name: 'users',
   components: {
     PageSearch,
-    PageContent
+    PageContent,
+    PageModal
   },
   setup() {
     // 封装hooks
@@ -41,6 +44,7 @@ export default defineComponent({
     return {
       formConfig,
       contentTableConfig,
+      modalConfig,
       pageContentRef,
       handleResetClick,
       handleQueryClick
