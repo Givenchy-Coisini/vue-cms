@@ -10,6 +10,7 @@ import { mapMenusToRoutes, mapMenusToPermissions } from '@/utils/map-menus'
 import { ILoginState } from './type'
 import { IRootState } from '../type'
 import router from '@/router'
+import store from '..'
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
   state() {
@@ -40,7 +41,7 @@ const loginModule: Module<ILoginState, IRootState> = {
     }
   },
   actions: {
-    async accountLoginAction({ commit }, payload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, payload: IAccount) {
       console.log('执行accountLoginAction', payload)
       const loginResult = await accountLoginRequest(payload)
       console.log(loginResult)
@@ -48,6 +49,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       commit('changeToken', token)
       localCache.setCache('token', token)
       console.log(token)
+      dispatch('getInitialDataAction', null, { root: true })
       // 2.发送其他请求 获取userInfo
       const userInfoResult = await requestUserInfo()
       const userInfo = userInfoResult.data
@@ -63,10 +65,11 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 4.跳到首页
       router.push('/main')
     },
-    loadLocalLogin({ commit }) {
+    loadLocalLogin({ commit, dispatch }) {
       const token = localCache.getCache('token')
       if (token) {
         commit('changeToken', token)
+        dispatch('getInitialDataAction', null, { root: true })
       }
       const userInfo = localCache.getCache('userInfo')
       if (userInfo) {

@@ -140,12 +140,13 @@ const systemModule: Module<ISystemState, IRootState> = {
       }
     },
     async deletePageDataAction(context, payload: any) {
-      const { pageName, id } = payload
+      // const { pageName, id } = payload
       // const pageUrl = `/${pageName}/${id}`
       // await deletePageData(pageUrl)
       // 重新获取最新的数据
       context.dispatch('getPageListAction', {
-        pageName,
+        pageName: payload.pageName,
+        // pageName,
         // 仍需要有些改进
         queryInfo: {
           offset: 0,
