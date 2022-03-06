@@ -1,7 +1,12 @@
 <template>
   <div class="role">
-    <page-search :formConfig="formConfig"></page-search>
+    <page-search
+      :formConfig="formConfig"
+      @resetBtnClick="handleResetClick"
+      @queryBtnClick="handleQueryClick"
+    ></page-search>
     <page-content
+      ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       pageName="role"
     ></page-content>
@@ -9,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import { formConfig } from './config/search.config'
@@ -21,9 +26,20 @@ export default defineComponent({
     PageContent
   },
   setup() {
+    const pageContentRef = ref<InstanceType<typeof PageContent>>()
+    const handleResetClick = () => {
+      pageContentRef.value?.getPageData()
+    }
+    const handleQueryClick = (queryInfo: any) => {
+      console.log('正在处理这个方法，看看会不会报错')
+      pageContentRef.value?.getPageData(queryInfo)
+    }
     return {
       formConfig,
-      contentTableConfig
+      contentTableConfig,
+      pageContentRef,
+      handleResetClick,
+      handleQueryClick
     }
   }
 })
