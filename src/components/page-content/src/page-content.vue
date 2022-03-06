@@ -20,10 +20,16 @@
           >{{ scope.row.status ? '启用' : '禁用' }}</el-button
         >
       </template>
-      <template #handler>
+      <template #handler="scope">
         <div class="handle-btns">
           <el-button size="mini" type="text">编辑</el-button>
-          <el-button size="mini" type="text" style="color: red">删除</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            style="color: red"
+            @click="handleDeleteClick(scope.row)"
+            >删除</el-button
+          >
         </div>
       </template>
       <!-- <template #imgUrl="scope">
@@ -77,7 +83,7 @@ export default defineComponent({
 
     // 双向绑定pageInfo
     const pageInfo = ref({
-      currentPage: 0,
+      currentPage: 1,
       pageSize: 10
     })
     watch(pageInfo, () => getPageData())
@@ -88,7 +94,7 @@ export default defineComponent({
         // pageUrl: '/users/list',
         pageName: props.pageName,
         queryInfo: {
-          offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+          offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
           size: pageInfo.value.pageSize,
           ...queryInfo
         }
@@ -117,13 +123,22 @@ export default defineComponent({
         return true
       }
     )
+
+    const handleDeleteClick = (item: any) => {
+      console.log('dianjisc', item)
+      store.dispatch('system/deletePageDataAction', {
+        pageName: props.pageName,
+        id: item.id
+      })
+    }
     return {
       dataList,
       dataCount,
       pageInfo,
       otherPropSlots,
       selectionChange,
-      getPageData
+      getPageData,
+      handleDeleteClick
     }
   }
 })

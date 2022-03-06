@@ -1,6 +1,6 @@
 import { IRootState } from '@/store/type'
 import { Module } from 'vuex'
-// import { getPageListData } from '@/network/api/system'
+// import { getPageListData,deletePageData } from '@/network/api/system'
 import { ISystemState } from './type'
 
 const systemModule: Module<ISystemState, IRootState> = {
@@ -138,6 +138,20 @@ const systemModule: Module<ISystemState, IRootState> = {
           commit('changeGoodsCount', totalCount)
           break
       }
+    },
+    async deletePageDataAction(context, payload: any) {
+      const { pageName, id } = payload
+      // const pageUrl = `/${pageName}/${id}`
+      // await deletePageData(pageUrl)
+      // 重新获取最新的数据
+      context.dispatch('getPageListAction', {
+        pageName,
+        // 仍有些改进
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
     }
   }
 }
