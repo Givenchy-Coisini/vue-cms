@@ -1,66 +1,89 @@
 <template>
   <!-- 面包屑暂时有些问题 -->
-  <!-- 43  1h 45min 3h 07  echats-->
+  <!-- 43  2h 31min 3h 07  echats-->
   <div class="dashboard">
     <el-row :gutter="10">
       <el-col :span="7">
         <yj-card title="分类商品数量(饼图)">
-          <yj-echart :option="option"></yj-echart>
+          <!-- <pie-echart :pieData="categoryGoodsCount"></pie-echart> -->
+          <pie-echart :pieData="[]"></pie-echart>
         </yj-card>
       </el-col>
       <el-col :span="10">
         <yj-card title="不同城市商品销量"></yj-card>
       </el-col>
       <el-col :span="7">
-        <yj-card title="分类商品数量(玫瑰图)"></yj-card>
+        <yj-card title="分类商品数量(玫瑰图)">
+          <rose-echart :roseData="[]"></rose-echart>
+        </yj-card>
       </el-col>
     </el-row>
     <el-row :gutter="10" class="content-row">
       <el-col :span="12">
-        <yj-card title="分类商品的销量"></yj-card>
+        <yj-card title="分类商品的销量">
+          <!-- <line-echart v-bind="categoryGoodsSale"></line-echart> -->
+          <line-echart :lineData="[]"></line-echart>
+        </yj-card>
       </el-col>
       <el-col :span="12">
-        <yj-card title="分类商品的收藏"></yj-card>
+        <yj-card title="分类商品的收藏">
+          <!-- <bar-echart v-bind="categoryGoodsSFavor"></bar-echart> -->
+          <bar-echart :BarData="[]"></bar-echart>
+        </yj-card>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-// import { useStore } from 'vuex'
+import { computed, defineComponent } from 'vue'
+// import { useStore } from '@/store'
 import YjCard from '@/base-ui/card'
-import YjEchart from '@/base-ui/echart'
+import {
+  PieEchart,
+  RoseEchart,
+  LineEchart,
+  BarEchart
+} from '@/components/page-echarts'
 export default defineComponent({
   name: 'dashboard',
   components: {
     YjCard,
-    YjEchart
+    PieEchart,
+    RoseEchart,
+    LineEchart,
+    BarEchart
   },
   setup() {
     // const store = useStore()
     // store.dispatch('dashboard/getDashboardDataAction')
-    const option = {
-      title: {
-        text: 'ECharts 入门示例'
-      },
-      tooltip: {},
-      legend: {
-        data: ['销量']
-      },
-      xAxis: {
-        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-      },
-      yAxis: {},
-      series: [
-        {
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }
-      ]
-    }
-    return { option }
+    // 请求数据
+    // const categoryGoodsCount = computed(() => {
+    //   return store.state.dashbord.categoryGoodsCount.map((item) => {
+    //     return { name: item.name, value: item.goodsCount }
+    //   })
+    // })
+    // const categoryGoodsSale = computed(() => {
+    //   const xLabels: string[] = []
+    //   const values: any[] = []
+    //   const categoryGoodsSale = store.state.dashbord.categoryGoodsSale
+    //   for(const item of categoryGoodsSale) {
+    //     xLabels.push(item.name)
+    //     values.push(item.goodsCount)
+    //   }
+    //   return {xLabels,values}
+    // const categoryGoodsFavor = computed(() => {
+    //   const xLabels: string[] = []
+    //   const values: any[] = []
+    //   const categoryGoodsFavor = store.state.dashbord.categoryGoodsFavor
+    //   for(const item of categoryGoodsFavor) {
+    //     xLabels.push(item.name)
+    //     values.push(item.goodsFavor)
+    //   }
+    //   return {xLabels,values}
+    // }
+    // return { categoryGoodsCount,categoryGoodsSale,categoryGoodsFavor}
+    return {}
   }
 })
 </script>
