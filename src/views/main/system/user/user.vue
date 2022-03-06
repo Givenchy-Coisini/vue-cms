@@ -14,23 +14,24 @@
     ></page-content>
     <page-modal
       :defaultInfo="defaultInfo"
-      :modalConfig="modalConfig"
+      :modalConfig="modalConfigRef"
       ref="pageModalRef"
     ></page-modal>
-    <!-- 41  1h 51 min 11   3h 16  xinjian-->
+    <!-- 41  2h 37 min 11   3h 16  xinjian-->
     <!-- 42  15min 12   3h 06  jibenkaifawanbi-->
     <!-- 43  20min 13   3h 07  echats-->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { formConfig } from './config/search.config'
 import { modalConfig } from './config/modal.config'
 import { contentTableConfig } from './config/content.config'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import PageModal from '@/components/page-modal'
+// import { useStore } from '@/store'
 // import { usePageSearch } from '@/hooks/usePageSearch'
 // import { usePageModal } from '@/hooks/usePageModal'
 export default defineComponent({
@@ -41,6 +42,32 @@ export default defineComponent({
     PageModal
   },
   setup() {
+    //动态添加部门和角色列表
+    const modalConfigRef = computed(() => {
+      // const store = useStore()
+      // const departmentItem = modalConfig.formItems.find(
+      //   (item) => item.field === 'departmentId'
+      // )
+      // departmentItem!.options = store.state.entireDepartment.map((item) => {
+      //   return { title: item.name, value: item.id }
+      // })
+      return modalConfig
+    })
+    // 新增和编辑是否隐藏对应的item
+    const newCallback = () => {
+      const passwordItem = modalConfig.formItems.find(
+        // 其实不是realname 是 password
+        (item) => item.field === 'realname'
+      )
+      passwordItem!.isHidden = false
+    }
+    const editCallback = () => {
+      const passwordItem = modalConfig.formItems.find(
+        (item) => item.field === 'realname'
+      )
+      passwordItem!.isHidden = true
+    }
+
     // 封装hooks
     // const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     // const [pageModalRef, handleEditData, handleNewData,defaultInfo] = usePageModal(newCallback,editCallback)
@@ -60,30 +87,19 @@ export default defineComponent({
       if (pageModalRef.value) {
         pageModalRef.value.centerDialogVisible = true
       }
+      newCallback && newCallback()
     }
     const handleEditData = (item: any) => {
       defaultInfo.value = { ...item }
       if (pageModalRef.value) {
         pageModalRef.value.centerDialogVisible = true
       }
+      editCallback && editCallback()
     }
-    // 新增和编辑是否隐藏对应的item
-    // const newCallback = () => {
-    //   const passwordItem = modalConfig.formItems.find(
-    //     (item) => item.field === 'password'
-    //   )
-    //   passwordItem!.isHidden = false
-    // }
-    // const editCallback = () => {
-    //   const passwordItem = modalConfig.formItems.find(
-    //     (item) => item.field === 'password'
-    //   )
-    //   passwordItem!.isHidden = true
-    // }
     return {
       formConfig,
       contentTableConfig,
-      modalConfig,
+      modalConfigRef,
       pageContentRef,
       pageModalRef,
       handleResetClick,
