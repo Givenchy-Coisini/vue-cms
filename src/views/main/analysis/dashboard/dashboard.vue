@@ -1,19 +1,22 @@
 <template>
   <!-- 面包屑暂时有些问题 -->
-  <!-- 43  20min 13   3h 07  echats-->
+  <!-- 43  43min 3h 07  echats-->
   <div class="dashboard">
+    <h2>dashboard</h2>
     <div ref="divRef" style="width: 600px; height: 500px"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-
+import { useStore } from 'vuex'
 import * as echarts from 'echarts'
 export default defineComponent({
   name: 'dashboard',
   setup() {
     const divRef = ref<HTMLElement>()
+    const store = useStore()
+    store.dispatch('dashboard/getDashboardDataAction')
     onMounted(() => {
       // 初始化echarts实例
       const echartInstance = echarts.init(divRef.value!) // 第二个参数是主题:light/dark
