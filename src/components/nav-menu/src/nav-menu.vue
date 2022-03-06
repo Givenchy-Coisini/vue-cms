@@ -34,7 +34,7 @@
         </template>
         <!-- 一级菜单 -->
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.id">
+          <el-menu-item :index="item.id" @click="handleMenuItemClick(item)">
             <svg class="icon icon-menu" aria-hidden="true">
               <use :xlink:href="`#${item.icon}`"></use>
             </svg>

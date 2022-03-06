@@ -37,6 +37,7 @@ export default defineComponent({
     }
     // 面包屑数组
     const store = useStore()
+    // 面包屑有点问题
     const breadcrumbs = computed(() => {
       const userMenus = store.state.login.userMenus
       const route = useRoute()

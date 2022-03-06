@@ -29,8 +29,6 @@
           @check="handleCheckChange"
         ></el-tree>
       </div>
-      <!-- 42  1h 50min 12   3h 06  jibenkaifawanbi-->
-      <!-- 43  20min 13   3h 07  echats-->
     </page-modal>
   </div>
 </template>
