@@ -12,7 +12,7 @@ const yjRequest = new YJRequest({
       const token = localCache.getCache('token')
       if (token) {
         // eslint-disable-next-line prettier/prettier
-        (config as any).headers.Authorization = `Bearer${token}`
+        ;(config as any).headers.Authorization = `Bearer${token}`
       }
       return config
     },
