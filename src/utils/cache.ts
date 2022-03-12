@@ -15,5 +15,5 @@ class LocalCache {
     window.localStorage.clear()
   }
 }
-
+// 默认导出一个实例
 export default new LocalCache()
