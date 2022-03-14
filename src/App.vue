@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style lang="less">
+// 设置全局app样式
 .app {
   height: 100%;
 }
