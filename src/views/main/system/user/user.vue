@@ -52,13 +52,13 @@ export default defineComponent({
       return modalConfig
     })
     // 新增和编辑是否隐藏对应的item
-    const newCallback = () => {
-      const passwordItem = modalConfig.formItems.find(
-        // 其实不是realname 是 password
-        (item) => item.field === 'realname'
-      )
-      passwordItem!.isHidden = false
-    }
+    // const newCallback = () => {
+    //   const passwordItem = modalConfig.formItems.find(
+    //     // 其实不是realname 是 password
+    //     (item) => item.field === 'realname'
+    //   )
+    //   passwordItem!.isHidden = false
+    // }
     const editCallback = () => {
       const passwordItem = modalConfig.formItems.find(
         (item) => item.field === 'realname'
@@ -80,12 +80,11 @@ export default defineComponent({
       pageContentRef.value?.getPageData(queryInfo)
     }
     const handleNewData = () => {
-      console.log('xxx')
       defaultInfo.value = {}
       if (pageModalRef.value) {
         pageModalRef.value.centerDialogVisible = true
       }
-      newCallback && newCallback()
+      // newCallback && newCallback()
     }
     const handleEditData = (item: any) => {
       defaultInfo.value = { ...item }
